@@ -1,0 +1,32 @@
+import time
+
+def factIt(n):
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+
+def factRec(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factRec(n - 1)
+
+
+def measure_runtime(func, *args):
+    start_time = time.time()
+    result = func(*args)
+    end_time = time.time()
+    runtime = end_time - start_time
+    return result, runtime
+
+
+n=int(input())
+
+
+iterative_result, iterative_time = measure_runtime(factIt, n)
+print(f"Iterative Factorial of {n}: Computed in {iterative_time:.6f} seconds")
+
+
+recursive_result, recursive_time = measure_runtime(factRec, n)
+print(f"Recursive Factorial of {n}: Computed in {recursive_time:.6f} seconds")
